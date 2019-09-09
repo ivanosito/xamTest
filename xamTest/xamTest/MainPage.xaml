@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:xamTest"
+            mc:Ignorable="d"
+            x:Class="xamTest.MainPage">
+
+    <ScrollView>
+
+    <StackLayout x:Name="stck001">
+
+        <Grid x:Name="gridGrid001" 
+            Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+ 
+        <Image Source="tevlogo806cut004" 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Aspect="AspectFit">
+        </Image>
+
+        <Picker x:Name="pickPais" Title="Seleccione un país" 
+            Grid.Row="0"
+            Grid.Column="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            SelectedIndexChanged="PickPais_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>Spain</x:String>
+                <x:String>France</x:String>
+                <x:String>UK</x:String>
+                <x:String>Alls</x:String>
+                <x:String>Random</x:String>
+            </Picker.Items>
+        </Picker>
+
+            <Label x:Name="lblTitulo" 
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Text="Prueba de Xamarin" 
+            HorizontalOptions="Center"
+            VerticalOptions="Start" />
+
+        <ActivityIndicator x:Name="actiEsperar" Color="Red" IsRunning="true" 
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"/>
+        
+        <CarouselView x:Name="CV" 
+            BackgroundColor="Black"
+            HeightRequest="300" 
+            HorizontalOptions="Center" 
+            VerticalOptions="CenterAndExpand" 
+            Margin="10">
+            <CarouselView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal"/>
+            </CarouselView.ItemsLayout>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image x:Name="image" Source="{Binding Picture}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+            <CarouselView.EmptyView>
+                <Label Text="No hay registros" />
+            </CarouselView.EmptyView>
+        </CarouselView>
+        
+    </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
