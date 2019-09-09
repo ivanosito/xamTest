@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using xamTest.Models;
 
 namespace xamTest
 {
@@ -17,12 +18,6 @@ namespace xamTest
     {
 
         #region "Properties, objetos previos a la construcción de un objeto de esta class"
-
-        // CarouselItem :: clase que define los objetos que conformarán el carrusel
-        public class CarouselItem
-        {
-            public ImageSource Picture { get; set; }
-        }
 
         // pictures :: una colección de CarouselItems, que será el ItemSource del carousel en XAML
         ObservableCollection<CarouselItem> pictures = new ObservableCollection<CarouselItem>();
