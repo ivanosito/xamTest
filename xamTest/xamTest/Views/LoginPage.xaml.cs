@@ -56,6 +56,7 @@ namespace xamTest.Views
                     if(txtPassword.Text == Crypto.Decrypt(UserHallado.Password, txtPassword.Text))
                     {
                         await DisplayAlert("Login", "Login exitoso", "Ok");
+                        await Navigation.PushAsync(new MainPage(), false);
                     }
                     else
                     {

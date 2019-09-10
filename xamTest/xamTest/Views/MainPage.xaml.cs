@@ -29,6 +29,7 @@ namespace xamTest
         public MainPage()
         {
             InitializeComponent();
+            actiRandom.IsVisible = false;
         }
 
         #endregion "Constructor"
@@ -38,6 +39,7 @@ namespace xamTest
         // PickPais handler
         private void PickPais_SelectedIndexChanged(object sender, EventArgs e)
         {
+            actiRandom.IsVisible = true;
             // -- Borra las fotos actuales, si las hay
             for (int i = pictures.Count-1; i >= 0; i--)
             {
@@ -68,6 +70,7 @@ namespace xamTest
             }
             // Carga las fotos en el Carousel
             CV.ItemsSource = pictures;
+            actiRandom.IsVisible = false;
         }
 
         #endregion "Methods handlers de eventos en el XAML"
