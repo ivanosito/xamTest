@@ -28,6 +28,10 @@ namespace xamTest.Views
             lblUserName.TextColor = Constants.MainTextColor;
             lblPassword.TextColor = Constants.MainTextColor;
             actiLogin.IsVisible = false;
+            lblUserName.IsVisible = true;
+            txtUserName.IsVisible = true;
+            lblPassword.IsVisible = true;
+            txtPassword.IsVisible = true;
             imgLogo.HeightRequest = Constants.LogoHeight;
             // Behaviors
             txtUserName.Completed += (s, e) => txtPassword.Focus();
@@ -36,6 +40,11 @@ namespace xamTest.Views
 
         private async void CmdIngresar_Clicked(object sender, EventArgs e)
         {
+            lblUserName.IsVisible = false;
+            txtUserName.IsVisible = false;
+            lblPassword.IsVisible = false;
+            txtPassword.IsVisible = false;
+            actiLogin.IsVisible = true;
             User user = new User(txtUserName.Text, txtPassword.Text);
             if(user.ValidarDatos())
             {
@@ -43,18 +52,14 @@ namespace xamTest.Views
                 User UserHallado = await App.SQLiteDb.GetItemByUserNameAsync(txtUserName.Text);
                 if(UserHallado != null)
                 {
-                    if(!string.IsNullOrEmpty(UserHallado.UserName))
+                    // Verificar el password
+                    if(txtPassword.Text == Crypto.Decrypt(UserHallado.Password, txtPassword.Text))
                     {
-                        // Verificar el password
-                        if(txtPassword.Text == Crypto.Decrypt(UserHallado.Password, txtPassword.Text))
-                        {
-                            await DisplayAlert("Login", "Login exitoso", "Ok");
-                        }
+                        await DisplayAlert("Login", "Login exitoso", "Ok");
                     }
                     else
                     {
-                        await DisplayAlert("Login", "Error: UserName no hallado", "Ok");
-                        return;
+                        await DisplayAlert("Login", "Error: Usuario no reconocido", "Ok");
                     }
                 }
                 else
@@ -66,12 +71,48 @@ namespace xamTest.Views
             {
                 await DisplayAlert("Login", "Error: UserName o Password vacío", "Ok");
             }
+            lblUserName.IsVisible = true;
+            txtUserName.IsVisible = true;
+            lblPassword.IsVisible = true;
+            txtPassword.IsVisible = true;
+            actiLogin.IsVisible = false;
         }
 
-        public async void UserNameAutenticado(string UserNameABuscar)
+        private async void CmdRegistrarse_Clicked(object sender, EventArgs e)
         {
-            User UserNameHAllado = await App.SQLiteDb.GetItemByUserNameAsync(UserNameABuscar);
+            lblUserName.IsVisible = false;
+            txtUserName.IsVisible = false;
+            lblPassword.IsVisible = false;
+            txtPassword.IsVisible = false;
+            actiLogin.IsVisible = true;
+            User UserRepetido = await App.SQLiteDb.GetItemByUserNameAsync(txtUserName.Text);
+            if (UserRepetido == null)
+            {
+                try
+                {
+                    User userNuevo = new User(txtUserName.Text, Crypto.Encrypt(txtPassword.Text, txtPassword.Text));
+                    await App.SQLiteDb.SaveItemAsync(userNuevo);
+                    await DisplayAlert("Login", "Registro exitoso!", "Ok");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Login", ex.Message, "Ok");
+                    lblUserName.IsVisible = true;
+                    txtUserName.IsVisible = true;
+                    lblPassword.IsVisible = true;
+                    txtPassword.IsVisible = true;
+                    actiLogin.IsVisible = false;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Login", "Error: Usuario ya existe", "Ok");
+            }
+            lblUserName.IsVisible = true;
+            txtUserName.IsVisible = true;
+            lblPassword.IsVisible = true;
+            txtPassword.IsVisible = true;
+            actiLogin.IsVisible = false;
         }
-
     }
 }
