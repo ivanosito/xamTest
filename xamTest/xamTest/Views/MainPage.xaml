@@ -55,9 +55,9 @@
             HorizontalOptions="Center"
             VerticalOptions="Start" />
 
-        <ActivityIndicator x:Name="actiEsperar" Color="Red" IsRunning="true" 
+        <ActivityIndicator x:Name="actiRandom" Color="Red" IsRunning="true" 
             HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand"/>
+            VerticalOptions="FillAndExpand"/>
         
         <CarouselView x:Name="CV" 
             BackgroundColor="Black"

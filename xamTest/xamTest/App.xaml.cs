@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using xamTest.Views;
+
 namespace xamTest
 {
     public partial class App : Application
@@ -10,7 +12,7 @@ namespace xamTest
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
 
         }
 

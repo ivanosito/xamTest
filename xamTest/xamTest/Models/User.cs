@@ -16,7 +16,6 @@ namespace xamTest.Models
 
         #region "Constructors"
 
-
         public User() { }
 
         public User(string userName, string password)
@@ -26,5 +25,11 @@ namespace xamTest.Models
         }
 
         #endregion "Constructors"
+
+        #region "Methods"
+
+        public bool ValidarDatos() => !(string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password));
+
+        #endregion "Methods"
     }
 }
