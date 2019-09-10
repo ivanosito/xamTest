@@ -31,12 +31,18 @@
             Grid.ColumnSpan="2" 
             Aspect="AspectFit">
         </Image>
+        
+        <ActivityIndicator x:Name="actiRandom" 
+            Color="Red" 
+            IsRunning="true" 
+            HorizontalOptions="Center"
+            VerticalOptions="StartAndExpand"/>
 
         <Picker x:Name="pickPais" Title="Seleccione un país" 
             Grid.Row="0"
             Grid.Column="2"
             HorizontalOptions="Center"
-            VerticalOptions="Center"
+            VerticalOptions="StartAndExpand"
             SelectedIndexChanged="PickPais_SelectedIndexChanged">
             <Picker.Items>
                 <x:String>Spain</x:String>
@@ -53,17 +59,13 @@
             Grid.ColumnSpan="3"
             Text="Prueba de Xamarin" 
             HorizontalOptions="Center"
-            VerticalOptions="Start" />
+            VerticalOptions="StartAndExpand" />
 
-        <ActivityIndicator x:Name="actiRandom" Color="Red" IsRunning="true" 
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="FillAndExpand"/>
-        
         <CarouselView x:Name="CV" 
             BackgroundColor="Black"
             HeightRequest="300" 
             HorizontalOptions="Center" 
-            VerticalOptions="CenterAndExpand" 
+            VerticalOptions="StartAndExpand" 
             Margin="10">
             <CarouselView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal"/>
