@@ -19,7 +19,7 @@
             <Label x:Name="lblUserName" Text="UserName:" />
             <Entry x:Name="txtUserName" Placeholder="UserName" />
             <Label x:Name="lblPassword" Text="Password:" />
-            <Entry x:Name="txtPassword" Placeholder="Password" />
+            <Entry x:Name="txtPassword" Placeholder="Password" IsPassword="True" />
             <Button x:Name="cmdIngresar" Text="Ingresar" Clicked="CmdIngresar_Clicked" />
         </StackLayout>
         

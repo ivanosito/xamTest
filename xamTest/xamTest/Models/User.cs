@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
+using xamTest.Data;
+
 namespace xamTest.Models
 {
-    class User
+    public class User
     {
         #region "Properties"
 

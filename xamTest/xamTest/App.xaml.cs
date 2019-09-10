@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using xamTest.Data;
 using xamTest.Views;
 
 namespace xamTest
@@ -30,5 +31,19 @@ namespace xamTest
         {
             // Handle when your app resumes
         }
+
+        static SQLiteHelper db;
+        public static SQLiteHelper SQLiteDb
+        {
+            get
+            {
+                if (db == null)
+                {
+                    db = new SQLiteHelper(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "XamarinSQLite.db3"));
+                }
+                return db;
+            }
+        }
+
     }
 }
