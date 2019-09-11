@@ -95,10 +95,16 @@ namespace xamTest.Data
 
         public static string Decrypt(string encryptedValue, string encryptionKey)
         {
-            string iv = encryptedValue.Substring(encryptedValue.IndexOf(';') + 1, encryptedValue.Length - encryptedValue.IndexOf(';') - 1);
-            encryptedValue = encryptedValue.Substring(0, encryptedValue.IndexOf(';'));
-
-            return AesDecryptStringFromBytes(Convert.FromBase64String(encryptedValue), CreateKey(encryptionKey), Convert.FromBase64String(iv));
+            try
+            {
+                string iv = encryptedValue.Substring(encryptedValue.IndexOf(';') + 1, encryptedValue.Length - encryptedValue.IndexOf(';') - 1);
+                encryptedValue = encryptedValue.Substring(0, encryptedValue.IndexOf(';'));
+                return AesDecryptStringFromBytes(Convert.FromBase64String(encryptedValue), CreateKey(encryptionKey), Convert.FromBase64String(iv));
+            }
+            catch (Exception Ex)
+            {
+                return "";
+            }
         }
 
     }
